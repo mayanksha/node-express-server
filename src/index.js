@@ -1,22 +1,20 @@
-import cors from 'cors';
-import express from 'express';
-import bodyParser from 'body-parser';
-
-const app = express();
-
-const port = 9000;
+"use strict";
+var express = require('express');
+var app = express();
+var cors = require("cors");
+var bodyParser = require('body-parser');
+var port = 9000;
 app.use(cors());
-app.use(bodyParser.json());
-
-app.post('/test', (req, res) => {
-  res.send(req.body);
+app.use(bodyParser());
+app.post('/test', function (req, res) {
+    setTimeout(function () {
+        res.send(req.body);
+    }, 400);
 });
-
-app.get('/test-get-body', (req, res) => {
-  console.log(req.body);
-  res.send(req.body);
+app.get('/test-get-body', function (req, res) {
+    console.log(req.body);
+    res.send(req.body);
 });
-
-app.listen(port, () =>
-  console.log(`Example app listening on port ${port}!`),
-);
+app.listen(port, function () {
+    return console.log("Example app listening on port " + port + "!");
+});
